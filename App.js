@@ -1,12 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Login from './src/Login';
+import { NativeBaseProvider, StatusBar } from 'native-base'
+import { TEMAS } from './src/styles/temas'
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider theme={TEMAS}>
+      <StatusBar backgroundColor={TEMAS.colors.black}/>
+      <Login/>
+    </NativeBaseProvider>
   );
 }
 
