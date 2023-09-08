@@ -18,8 +18,8 @@ export function EntradaTexto ({
       <Input
         placeholder={placeholder}
         size="lg"
-        w="100%"
-        borderRadius="lg"
+        w="70%"
+        borderRadius={32}
         bgColor="gray.100"
         secureTextEntry={secureTextEntry}
         shadow={3}
