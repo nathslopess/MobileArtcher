@@ -4,45 +4,75 @@
 
 import { VStack, Image, Text, Box, FormControl, Input, Button, Link } from 'native-base'
 import { TouchableOpacity } from 'react-native'
+import { useState } from 'react'
 import Logo from './assets/logo.png'
 import Logo2 from './assets/logo2.png'
 import Logo3 from './assets/logo3.png'
 import { Titulo } from './Components/Titulo'
+import { EntradaTexto } from './Components/EntradaTexto'
+import { useAppState } from 'native-base/lib/typescript/core/color-mode/hooks'
 
 
 export default function Cadastro() {
+
+
+  const [numSecao, setNumSecao] = useState(0)
+
+
+  const secoes = [
+    {
+      id: 1,
+      titulo: 'Cadastro',
+      entradaTexto: [
+        {
+          id: 1,
+          label: 'Name',
+          placeholder: 'Your Name'
+        },
+
+        {
+          id: 2,
+          label: 'Email',
+          placeholder: 'Your Email'
+        }
+      ]
+    }
+  ]
+
+  function avancarSecao(){
+    if ( numSecao < secoes.length - 1 ){
+      setNumSecao(numSecao+1)
+    }
+  }
+
+  function voltarSecao() {
+    if( numSecao > 0 ){
+      setNumSecao(numSecao-1)
+    }
+  }
+
   return (
     <VStack flex={1} alignItems='center' justifyContent='center' padding={5}>
       <Image source={Logo}/>
 
       <Titulo>
-        Cadastro
+        {secoes[0].titulo}
       </Titulo>
 
       <Box>
-        <FormControl marginTop={3}>
-          {/* <FormControl.Label>Your Name</FormControl.Label> */}
-          <Input placeholder='Your Name or User' size='sm' width='70%' backgroundColor='gray.100' shadow={3} borderRadius={32}/>
-        </FormControl>
+        {
+          secoes[0].entradaTexto.map(entrada => {
+            return <EntradaTexto label={entrada.label} placeholder={entrada.placeholder} key={entrada.id}/>
+          })
+        }
 
-        <FormControl marginTop={3}>
-          {/* <FormControl.Label>Your Name</FormControl.Label> */}
-          <Input placeholder='Your Password' size='sm' width='70%' backgroundColor='gray.100' shadow={3} borderRadius={32}/>
-        </FormControl>
+       <EntradaTexto label=' Create User' placeholder='Your User'/>
+
+       <EntradaTexto label='Create Password' placeholder='Your Password'/>
       </Box>
 
-      <Button width='30%' backgroundColor='blue.800' marginTop={12} borderRadius={21}>Sign In</Button>
-
-      <Link href='https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%3Fhl%3Dpt-BR&ec=GAlA8wE&hl=pt-BR&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S470259728%3A1694130596167021&theme=glif'> 
-          Login with 
-      </Link>
-
-      <Box width='100%' flexDirection='row' justifyContent='center'>
-        <Text>Ainda não tem conta?</Text>
-        <TouchableOpacity>
-          <Text color='green.500' > Sign Up</Text>
-        </TouchableOpacity>
-      </Box>
+      <Button width='30%' backgroundColor='blue.800' marginTop={10} borderRadius={21}>Sign Up</Button>
+      <Button width='30%' backgroundColor='blue.800' marginTop={3} borderRadius={21} onPress={() => voltarSecao()}>Back</Button>
     </VStack>
   );
 }
