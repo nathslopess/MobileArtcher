@@ -16,30 +16,30 @@ export default function Cadastro() {
 
   const [numSecao, setNumSecao] = useState(0)
   
-  const [lista, setLista] = useState([]);
-  const navigation = useNavigation();
+  // const [lista, setLista] = useState([]);
+  // const navigation = useNavigation();
 
-  useEffect(() => {
-    // criar funcao getLista()
-    // chamar getLista()
+  // useEffect(() => {
+  //   // criar funcao getLista()
+  //   // chamar getLista()
 
-    const getLista = () => {
-      try {
-        fetch('https://artcher.azurewebsites.net/swagger/index.html')
-         .then(response => response.json())
-         .then(resultado => {
-           setLista(resultado)
-           console.log(resultado)
-         })
+  //   const getLista = () => {
+  //     try {
+  //       fetch('https://artcher.azurewebsites.net/swagger/index.html')
+  //        .then(response => response.json())
+  //        .then(resultado => {
+  //          setLista(resultado)
+  //          console.log(resultado)
+  //        })
 
-      } catch (error) {
-        console.log('error: ', error)
-      }
-    }
+  //     } catch (error) {
+  //       console.log('error: ', error)
+  //     }
+  //   }
 
-    getLista()
+  //   getLista()
     
-  }, [])
+  // }, [])
 
   // const navegar = () => {
   //   navigation.navigate('Login');
